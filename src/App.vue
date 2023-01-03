@@ -1,26 +1,32 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+// import { RouterLink, RouterView } from "vue-router";
+// import HelloWorld from "./components/HelloWorld.vue";
+import { GoogleMap, Marker } from 'vue3-google-map';
+
+const center = { lat: 41.4307727, lng: 2.1745089 };
+const googleMapsApiKey = import.meta.env.GOOGLE_MAPS_API_KEY;
 </script>
 
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
+    <p style="color:white">googleMapsApiKey: {{ googleMapsApiKey }} //</p>
+    <GoogleMap
+      :api-key="googleMapsApiKey"
+      style="width: 100%; height: 500px"
+      :center="center"
+      :zoom="15"
+    >
+      <Marker :options="{ position: center }" />
+    </GoogleMap>
 
-    <div class="wrapper">
+    <!-- <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
-    </div>
+    </div> -->
   </header>
 
   <RouterView />
